@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Video Page</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial;
+    }
+    .wrapper {
+      width: 100%;
+      max-width: 800px;
+      padding: 10px;
+      text-align: center;
+    }
+    video {
+      width: 100%;
+      border-radius: 10px;
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <h2>My Special Video</h2>
+
+    <video controls autoplay muted loop playsinline>
+      <!-- Yahan tumhara video file ka naam same rakha hai -->
+      <source src="upnayanam-sanskar-invitation-video-64-82.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+
+  </div>
+</body>
+  </html>
