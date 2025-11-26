@@ -1,44 +1,388 @@
-<!DOCTYPE html> 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Video Page</title>
+  <title>उपनयन संस्कार निमंत्रण</title>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      background: #000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe7b3, #f5d0a0, #f7c77c);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+      color: #3b1a10;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 900px;
+      background: #fffdf6;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border: 6px solid #e0a300;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Madhubani style border (simple pattern) */
+    .card::before, .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 10px solid transparent;
+      border-image: repeating-linear-gradient(45deg,#a12929 0 10px,#f8d94a 10px 20px,#1c6f3b 20px 30px) 15;
+      pointer-events: none;
+    }
+    .card::after {
+      inset: 12px;
+      border-width: 3px;
+      border-radius: 10px;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .music-btn {
+      border: none;
+      background: #b51b1b;
       color: #fff;
-      height: 100vh;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-family: Arial;
+      gap: 6px;
     }
-    .wrapper {
-      width: 100%;
-      max-width: 800px;
-      padding: 10px;
+
+    .music-btn span {
+      font-size: 16px;
+    }
+
+    .hero-title {
       text-align: center;
+      margin: 10px 0 4px;
     }
+
+    .hero-title h1 {
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: #b51b1b;
+    }
+
+    .hero-title h2 {
+      font-size: 18px;
+      margin-top: 6px;
+      color: #3b1a10;
+    }
+
+    .mantra {
+      text-align: center;
+      font-size: 14px;
+      margin: 8px 0 14px;
+      color: #6b341e;
+      line-height: 1.4;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(181,27,27,0.08);
+      color: #b51b1b;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .video-wrap {
+      margin: 14px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 3px solid #f1c24b;
+      background:#000;
+    }
+
     video {
       width: 100%;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 16px;
+      margin: 10px 0 6px;
+      color: #8a2b24;
+      text-align: center;
+    }
+
+    .names {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .names strong {
+      font-size: 17px;
+      color: #b51b1b;
+    }
+
+    .parents {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .schedule {
+      margin: 10px 0;
+      background: #fff6dd;
       border-radius: 10px;
-      outline: none;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 4px 0;
+      border-bottom: 1px dashed #e0c06c;
+    }
+
+    .schedule-row:last-child {
+      border-bottom: none;
+    }
+
+    .date {
+      font-weight: 600;
+      color: #8a2b24;
+      min-width: 120px;
+    }
+
+    .event {
+      flex: 1;
+    }
+
+    .highlight {
+      background: #b51b1b;
+      color:#fff;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .venue {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 10px 0 4px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 14px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #b51b1b;
+      color:#fff;
+    }
+    .btn-outline {
+      background: #fff;
+      color:#b51b1b;
+      border: 1px solid #b51b1b;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: #6b341e;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 600px){
+      .card { padding: 14px; }
+      .hero-title h1 { font-size: 20px; }
+      .hero-title h2 { font-size: 17px; }
+      .mantra { font-size: 13px; }
     }
   </style>
 </head>
-
 <body>
-  <div class="wrapper">
-    <h2>My Special Video</h2>
 
-    <video controls autoplay muted loop playsinline>
-      <!-- Yahan tumhara video file ka naam same rakha hai -->
-      <source src="upnayanam-sanskar-invitation-video-64-82.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
+<div class="card">
+  <div class="content">
+    
+    <div class="top-bar">
+      <div>
+        <div style="font-size: 13px; color:#6b341e;">मिथिला ब्राह्मण परिवार</div>
+        <div style="font-size: 15px; font-weight:600;">उपनयन संस्कार आमंत्रण</div>
+      </div>
+      <button class="music-btn" id="musicToggle">
+        <span>🔔</span> भक्ति गीत चालू करें
+      </button>
+    </div>
+
+    <div class="hero-title">
+      <h1>उपनयन संस्कार निमंत्रण</h1>
+      <h2>(नन्दन झा उर्फ़ सोनू झा एवं शिवम झा)</h2>
+      <div class="pill">Gayatri Mantra Updesh • Yagyopavit Sanskar</div>
+    </div>
+
+    <div class="mantra">
+      ॐ भूर्भुवः स्वः। तत्सवितुर्वरेण्यं।  
+      भर्गो देवस्य धीमहि। धियो यो नः प्रचोदयात्॥
+    </div>
+
+    <!-- VIDEO SECTION (Tumhara invitation video) -->
+    <div class="video-wrap">
+      <video controls autoplay muted loop playsinline>
+        <!-- YAHAN FILE NAME BILKUL SAME RAKHNA HAI JAISE TUMHARE GITHUB ME -->
+        <source src="upnayanam-sanskar-invitation-video-64-82.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+
+    <!-- NAMES SECTION -->
+    <div class="names">
+      हमारे सुपुत्र  
+      <br>
+      <strong>नन्दन झा (सोनू झा)</strong> एवं <strong>शिवम झा</strong>  
+      <br>
+      का पवित्र उपनयन (जनेऊ) संस्कार संपन्न होने जा रहा है।
+    </div>
+
+    <div class="parents">
+      कृपया सपरिवार पधार कर शुभ अवसर पर  
+      <br>आशीर्वाद देने की कृपा करें।
+      <br><br>
+      पिता: <strong>श्री विनय झा</strong> &nbsp; | &nbsp;
+      माता: <strong>श्रीमती शोमिता देवी</strong>
+    </div>
+
+    <!-- SCHEDULE SECTION -->
+    <h3 class="section-title">कार्यक्रम का शुभ-विवरण (फरवरी 2026)</h3>
+
+    <div class="schedule">
+      <div class="schedule-row">
+        <div class="date">22 फरवरी 2026</div>
+        <div class="event">मराबथाती एवं बसकट्टी</div>
+      </div>
+      <div class="schedule-row">
+        <div class="date">24 फरवरी 2026</div>
+        <div class="event">मैतमंगल</div>
+      </div>
+      <div class="schedule-row">
+        <div class="date">25 फरवरी 2026</div>
+        <div class="event">कुमरम</div>
+      </div>
+      <div class="schedule-row">
+        <div class="date">
+          26 फरवरी 2026
+          <div class="highlight">उपनयन संस्कार (मुख्य दिवस)</div>
+        </div>
+        <div class="event">यज्ञोपवीत एवं गायत्री मंत्र उपदेश</div>
+      </div>
+      <div class="schedule-row">
+        <div class="date">27 फरवरी 2026</div>
+        <div class="event">एकादशी जागरण</div>
+      </div>
+    </div>
+
+    <!-- VENUE -->
+    <div class="venue">
+      स्थान: <strong>बरदही (Bardahi)</strong>
+      <br>
+      मिथिला की पावन भूमि पर आपका हार्दिक स्वागत है।
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="buttons">
+      <a class="btn btn-primary" href="#" id="whShare">
+        📲 WhatsApp से शेयर करें
+      </a>
+      <!-- Agar future me map link ho to yahan daal sakte ho -->
+      <!-- <a class="btn btn-outline" href="https://maps.google.com/?q=Bardahi" target="_blank">📍 स्थान देखें</a> -->
+    </div>
+
+    <div class="footer-note">
+      "आशिर्वाद दियौं, हमर जीवन उजियार करियौ"  
+      <br>
+      – झा परिवार, बरदही
+    </div>
 
   </div>
+</div>
+
+<!-- BACKGROUND MUSIC (Maithili upnayan geet ka clip yahan upload karke naam same rakhna) -->
+<audio id="bgMusic" loop>
+  <source src="bg-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // WhatsApp share button
+  (function(){
+    var shareBtn = document.getElementById('whShare');
+    if(shareBtn){
+      var url = window.location.href;
+      var text = 'उपनयन संस्कार निमंत्रण – नन्दन झा (सोनू झा) एवं शिवम झा | कृपया सपरिवार पधार कर आशीर्वाद दें।\n' + url;
+      var waLink = 'https://wa.me/?text=' + encodeURIComponent(text);
+      shareBtn.setAttribute('href', waLink);
+    }
+  })();
+
+  // Background music toggle
+  const musicBtn = document.getElementById('musicToggle');
+  const music = document.getElementById('bgMusic');
+  let isPlaying = false;
+
+  if(musicBtn && music){
+    musicBtn.addEventListener('click', async function(){
+      try {
+        if(!isPlaying){
+          await music.play();
+          isPlaying = true;
+          musicBtn.innerHTML = '<span>🔔</span> भक्ति गीत बंद करें';
+        } else {
+          music.pause();
+          isPlaying = false;
+          musicBtn.innerHTML = '<span>🔔</span> भक्ति गीत चालू करें';
+        }
+      } catch(e){
+        alert('अगर गीत न चले तो एक बार स्क्रीन को touch करके फिर button दबाएं।');
+      }
+    });
+  }
+</script>
+
 </body>
   </html>
